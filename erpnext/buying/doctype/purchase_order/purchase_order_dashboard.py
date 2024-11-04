@@ -30,14 +30,10 @@ def get_data():
 				"label": _("Manufacturing"),
 				"items": ["Material Request", "BOM", "Production Plan", "Blanket Order"],
 			},
-<<<<<<< HEAD
-			{"label": _("Sub-contracting"), "items": ["Subcontracting Order", "Stock Entry"]},
-			{"label": _("Internal"), "items": ["Sales Order"]},
-=======
 			{
 				"label": _("Sub-contracting"),
 				"items": ["Subcontracting Order", "Subcontracting Receipt", "Stock Entry"],
 			},
->>>>>>> 2017fd80d1 (fix: SO link on PO and add in missing dashboard references on both)
+			{"label": _("Internal"), "items": ["Sales Order"]},
 		],
 	}

@@ -24,13 +24,8 @@ def get_data():
 			},
 			{"label": _("Purchasing"), "items": ["Material Request", "Purchase Order"]},
 			{"label": _("Projects"), "items": ["Project"]},
-<<<<<<< HEAD
-			{"label": _("Manufacturing"), "items": ["Work Order"]},
 			{"label": _("Reference"), "items": ["Quotation", "Auto Repeat"]},
-=======
 			{"label": _("Manufacturing"), "items": ["Work Order", "BOM", "Blanket Order"]},
-			{"label": _("Reference"), "items": ["Quotation", "Auto Repeat", "Stock Reservation Entry"]},
->>>>>>> 2017fd80d1 (fix: SO link on PO and add in missing dashboard references on both)
 			{"label": _("Payment"), "items": ["Payment Entry", "Payment Request", "Journal Entry"]},
 		],
 	}
