@@ -3760,9 +3760,7 @@ class TestSalesInvoice(FrappeTestCase):
 		self.assertTrue(jv)
 		self.assertEqual(jv[0], si.grand_total)
 
-<<<<<<< HEAD
-=======
-	@IntegrationTestCase.change_settings("Accounts Settings", {"enable_common_party_accounting": True})
+	@change_settings("Accounts Settings", {"enable_common_party_accounting": True})
 	def test_common_party_with_different_currency_in_debtor_and_creditor(self):
 		from erpnext.accounts.doctype.account.test_account import create_account
 		from erpnext.accounts.doctype.opening_invoice_creation_tool.test_opening_invoice_creation_tool import (
@@ -3844,14 +3842,6 @@ class TestSalesInvoice(FrappeTestCase):
 		self.assertTrue(jv)
 		self.assertEqual(jv[0], si.grand_total)
 
-	def test_invoice_remarks(self):
-		si = frappe.copy_doc(self.globalTestRecords["Sales Invoice"][0])
-		si.po_no = "Test PO"
-		si.po_date = nowdate()
-		si.save()
-		si.submit()
-		self.assertEqual(si.remarks, f"Against Customer Order Test PO dated {format_date(nowdate())}")
->>>>>>> e371f68d66 (fix: handle multi currency in common party journal entry)
 
 def check_gl_entries(doc, voucher_no, expected_gle, posting_date):
 	gl_entries = frappe.db.sql(
