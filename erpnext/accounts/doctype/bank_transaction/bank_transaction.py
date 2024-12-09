@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from frappe.model.docstatus import DocStatus
 from frappe.utils import flt
 
