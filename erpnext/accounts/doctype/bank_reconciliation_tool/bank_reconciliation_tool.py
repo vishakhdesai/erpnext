@@ -461,6 +461,7 @@ def subtract_allocations(gl_account, vouchers):
 
 	for voucher in vouchers:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rows = get_total_allocated_amount(voucher[1], voucher[2])
 		amount = None
 		for row in rows:
@@ -469,6 +470,9 @@ def subtract_allocations(gl_account, vouchers):
 				break
 =======
 		rows = voucher_allocated_amounts.get((voucher.get("doctype"), voucher.get("name")))
+=======
+		rows = voucher_allocated_amounts.get((voucher.get("doctype"), voucher.get("name"))) or []
+>>>>>>> 2ce07865d3 (fix: failing tests fixed)
 		filtered_row = list(filter(lambda row: row.get("gl_account") == gl_account, rows))
 >>>>>>> 6b847cdb62 (fix: refactor query in get_total_allocated_amount in bank_transaction)
 
