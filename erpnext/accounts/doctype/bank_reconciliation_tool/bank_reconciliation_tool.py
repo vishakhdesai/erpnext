@@ -456,25 +456,16 @@ def subtract_allocations(gl_account, vouchers):
 	"Look up & subtract any existing Bank Transaction allocations"
 	copied = []
 
-	voucher_docs = [(voucher.get("doctype"), voucher.get("name")) for voucher in vouchers]
+	voucher_docs = [(voucher[1], voucher[2]) for voucher in vouchers]
 	voucher_allocated_amounts = get_total_allocated_amount(voucher_docs)
 
 	for voucher in vouchers:
-<<<<<<< HEAD
-<<<<<<< HEAD
-		rows = get_total_allocated_amount(voucher[1], voucher[2])
+		rows = voucher_allocated_amounts.get((voucher[1], voucher[2])) or []
 		amount = None
 		for row in rows:
 			if row["gl_account"] == gl_account:
 				amount = row["total"]
 				break
-=======
-		rows = voucher_allocated_amounts.get((voucher.get("doctype"), voucher.get("name")))
-=======
-		rows = voucher_allocated_amounts.get((voucher.get("doctype"), voucher.get("name"))) or []
->>>>>>> 2ce07865d3 (fix: failing tests fixed)
-		filtered_row = list(filter(lambda row: row.get("gl_account") == gl_account, rows))
->>>>>>> 6b847cdb62 (fix: refactor query in get_total_allocated_amount in bank_transaction)
 
 		if amount:
 			l = list(voucher)

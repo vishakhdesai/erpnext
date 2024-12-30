@@ -93,13 +93,9 @@ class BankTransaction(StatusUpdater):
 		- clear means: set the latest transaction date as clearance date
 		"""
 		remaining_amount = self.unallocated_amount
-<<<<<<< HEAD
-=======
-		to_remove = []
 		payment_entry_docs = [(pe.payment_document, pe.payment_entry) for pe in self.payment_entries]
 		pe_bt_allocations = get_total_allocated_amount(payment_entry_docs)
 
->>>>>>> 6b847cdb62 (fix: refactor query in get_total_allocated_amount in bank_transaction)
 		for payment_entry in self.payment_entries:
 			if payment_entry.allocated_amount == 0.0:
 				unallocated_amount, should_clear, latest_transaction = get_clearance_details(
