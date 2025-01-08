@@ -64,7 +64,7 @@ erpnext.taxes_and_totals = class TaxesAndTotals extends erpnext.payments {
 			&& this.frm.doc.is_pos
 			&& this.frm.doc.is_return
 		) {
-			this.set_total_amount_to_default_mop();
+			this.set_total_amount_to_default_mop(update_paid_amount);
 			this.calculate_paid_amount();
 		}
 
@@ -838,7 +838,9 @@ erpnext.taxes_and_totals = class TaxesAndTotals extends erpnext.payments {
 		}
 	}
 
-	set_total_amount_to_default_mop() {
+	set_total_amount_to_default_mop(update_paid_amount) {
+		if (update_paid_amount === false) return;
+
 		let grand_total = this.frm.doc.rounded_total || this.frm.doc.grand_total;
 		let base_grand_total = this.frm.doc.base_rounded_total || this.frm.doc.base_grand_total;
 
@@ -860,15 +862,7 @@ erpnext.taxes_and_totals = class TaxesAndTotals extends erpnext.payments {
 			);
 		}
 
-		this.frm.doc.payments.find(payment => {
-			if (payment.default) {
-				payment.amount = total_amount_to_pay;
-			} else {
-				payment.amount = 0
-			}
-		});
-
-		this.frm.refresh_fields();
+		this.set_default_payment(total_amount_to_pay, update_paid_amount);
 	}
 
 	set_default_payment(total_amount_to_pay, update_paid_amount) {
@@ -898,6 +892,10 @@ erpnext.taxes_and_totals = class TaxesAndTotals extends erpnext.payments {
 					frappe.model.set_value(data.doctype, data.name, "amount", 0.0);
 				}
 			});
+
+			if (payment_status) {
+				frappe.model.set_value(this.frm.doc.payments[0].doctype, this.frm.doc.payments[0].name, "amount", total_amount_to_pay);
+			}
 		}
 	}
 
